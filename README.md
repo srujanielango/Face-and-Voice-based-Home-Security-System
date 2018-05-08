@@ -3,12 +3,10 @@
 State of the art facial and voice recognition system for home security leveraging cognitive libraries and APIs.
 
 1. Face - dlib's facial recognition library
-
 2. Voice - VoiceIt API
-
 3. Sending text notifications - Twilio messaging app
 
-# STEPS FOR RUNNING THE DEMO
+# Steps for running the demo
 
 STEP 1 (Create Twilio credentials):
 1.	Go to the sign up page (https://www.twilio.com/try-twilio) and sign up as a new user.
