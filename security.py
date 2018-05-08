@@ -15,11 +15,11 @@ import pyttsx
 import wave
 
 ##VoiceIt developer ID
-myVoiceIt = VoiceIt("b815868a54f04d40a5af9bb6afebbc50")
+myVoiceIt = VoiceIt("")
 # Your Account SID from twilio.com/console
-account_sid = "AC507bd973300ff042d63be3ddad4090a1"
+account_sid = ""
 # Your Auth Token from twilio.com/console
-auth_token  = "8200f0fb5e35ebe14c94504fea203850"
+auth_token  = ""
 clients = Client(account_sid, auth_token)
 first_frame =None
 status_list=[None,None]
@@ -32,21 +32,21 @@ engine = pyttsx.init()
 
 # Load a sample picture and learn how to recognize it.
 #Person 1
-image_Ashwanth1 = fr.load_image_file("Ashwanth1.jpg")
-image_Ashwanth2 = fr.load_image_file("Ashwanth2.jpg")
-image_Ashwanth3 = fr.load_image_file("Ashwanth3.jpg")
-image_Ashwanth4 = fr.load_image_file("Ashwanth3-1.jpg")
-image_Ashwanth5 = fr.load_image_file("Ashwanth5.jpg")
-image_Ashwanth6 = fr.load_image_file("Ashwanth6.jpg")
+image_1 = fr.load_image_file("image1.jpg")
+image_2 = fr.load_image_file("image2.jpg")
+image_3 = fr.load_image_file("image3.jpg")
+image_4 = fr.load_image_file("image4.jpg")
+image_5 = fr.load_image_file("image5.jpg")
+image_6= fr.load_image_file("image6.jpg")
 
 
 ##Encoding face from sample image - Ashwanth
-face_encoding_Ashwanth1 = fr.face_encodings(image_Ashwanth1)[0]
-face_encoding_Ashwanth2 = fr.face_encodings(image_Ashwanth2)[0]
-face_encoding_Ashwanth3 = fr.face_encodings(image_Ashwanth3)[0]
-face_encoding_Ashwanth4 = fr.face_encodings(image_Ashwanth4)[0]
-face_encoding_Ashwanth5 = fr.face_encodings(image_Ashwanth5)[0]
-face_encoding_Ashwanth6 = fr.face_encodings(image_Ashwanth6)[0]
+face_encoding_1 = fr.face_encodings(image_1)[0]
+face_encoding_2 = fr.face_encodings(image_2)[0]
+face_encoding_3 = fr.face_encodings(image_3)[0]
+face_encoding_4 = fr.face_encodings(image_4)[0]
+face_encoding_5 = fr.face_encodings(image_5)[0]
+face_encoding_6 = fr.face_encodings(image_6)[0]
 
 # Initialize some variables - face recognition
 face_locations = []
@@ -55,13 +55,13 @@ face_names = []
 process_this_frame = True
 
 ## Results is an array of True/False telling if the unknown face matched anyone in the known_faces array
-ash_known_faces = [
-    face_encoding_Ashwanth1,
-    face_encoding_Ashwanth2,
-    face_encoding_Ashwanth3,
-    face_encoding_Ashwanth4,
-    face_encoding_Ashwanth5,
-    face_encoding_Ashwanth6
+known_faces = [
+    face_encoding_1,
+    face_encoding_2,
+    face_encoding_3,
+    face_encoding_4,
+    face_encoding_5,
+    face_encoding_6
     ]
 
 ## Recorder to record voice and converting to file
@@ -201,20 +201,20 @@ while True:
             face_names = []
             for face_encoding in face_encodings:
             # See if the face is a match for the known face(s)
-                matchA = fr.compare_faces(ash_known_faces, face_encoding)
-                matchS = fr.compare_faces(sru_known_faces, face_encoding)
+                matchA = fr.compare_faces(known_faces, face_encoding)
+                
                 name = "Unknown"
 
 
-            ## If face matches known face - Ashwanth
+            ## If face matches known face - person A
                 if matchA[0]:
-                    #prints name around face as Ashwanth
-                    name = "Ashwanth"
+                    #prints name around face as A
+                    name = "A"
                     # function call to convert voice recording to wav file
                     voicephrase()
 
                     # Response sent to VoiceIt api with credentials to authenticate voice
-                    response = myVoiceIt.authentication("Ashwanth", "ashwanth", "Ashwanth-voicePrint.wav", "en-US")
+                    response = myVoiceIt.authentication("VoiceIt_userid", "VoiceIt_password", "nameoffile.wav", "en-US")
                     print(response)
 
                     #If response fails once
@@ -227,7 +227,7 @@ while True:
                             engine.say('Authentication Failed. Voice Not Detected. Please say the catch phrase again')
                             engine.runAndWait()
                             voicephrase()
-                            response = myVoiceIt.authentication("Ashwanth", "ashwanth", "Ashwanth-voicePrint.wav", "en-US")
+                            response = myVoiceIt.authentication("VoiceIt_userid", "VoiceIt_password", "nameoffile.wav", "en-US")
                             print(response)
                             #Increase attempt by 1
                             number_of_guesses = number_of_guesses + 1
@@ -238,7 +238,7 @@ while True:
                                 engine.runAndWait()
 
                                 #Repeats process
-                                response = myVoiceIt.authentication("Ashwanth", "ashwanth", "Ashwanth-voicePrint.wav", "en-US")
+                                response = myVoiceIt.authentication("VoiceIt_userid", "VoiceIt_password", "nameoffile.wav", "en-US")
                                 print(response)
                                 print('Authentication Successful. Voice Detected. You can enter the house.')
                                 exit()
@@ -248,8 +248,8 @@ while True:
                         engine.runAndWait()
 
                         # Calls Twilio API to send a text message to linked phone number
-                        message = clients.api.account.messages.create(to="+16177174048",
-                                                from_="+16179172104",
+                        message = clients.api.account.messages.create(to="<enter your phone number>",
+                                                from_="<enter your phone number>",
                                                 body="Alert! An unknown person is trying to enter the building")
                         print('Authentication Failed. Voice Not Detected.')
                         exit()
@@ -271,8 +271,8 @@ while True:
                         engine.say('Unknown face detected. Please move away from the camera')
                         engine.runAndWait()
                         # Sends text message to phone number
-                        message = clients.api.account.messages.create(to="+16177174048",
-                                                from_="+16179172104",
+                        message = clients.api.account.messages.create(to="<enter your phone number>",
+                                                from_="<enter your phone number>",
                                                 body="Alert! An unknown person has failed face recognition")
                         run_once = 1
                 face_names.append(name)
