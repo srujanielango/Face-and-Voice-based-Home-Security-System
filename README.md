@@ -24,18 +24,25 @@ STEP 2 (Create Voiceit credentials):
 4.	Next go to the following link (https://voiceit.io/apidemo) and enter the user id details and developer id generated. 
 5.	In the same page create new voice enrollments and say the catch phrase prompted.
 6.	Make 5 to 10 recording of your voice and maintain the same tone and modulation.
-7.	Refer to the DOCS page (https://voiceit.io/devDocs) for more info.
-STEP 3: Once this is done, download the three python files given (plotting.py, security.py and voiceit.py).
-STEP 4: Next we need to install the face recognition package DLIB which requires Visual studio 2014 and all C++ packages to be installed along with it.
-STEP 5: Once this is done, go to the terminal and pip install face_recognition.
+7.	Refer to the DOCS page (https://voiceit.io/devDocs) for more info
+
+STEP 3: Once this is done, download the three python files given (plotting.py, security.py and voiceit.py)
+
+STEP 4: Next we need to install the face recognition package DLIB which requires Visual studio 2014 and all C++ packages to be installed along with it
+
+STEP 5: Once this is done, go to the terminal and pip install face_recognition
+
 STEP 6: Packages to be pip installed are:
 1.	Face recognition         : pip install face_recognition
 2.	Twilio                   : pip install twilio
 3.	Pyaudio                  : pip install pyaudio
 4.	Pyttsx                   : pip install pyttsx
-STEP 7: After all the necessary packages are installed, run the file (plotting.py).
-STEP 8: After running do not show your face in front of the camera, until the system prompts you through voice. 
-STEP 9: Once prompted you can show your face in front of the camera and the system will provide you with voice prompts regarding next steps.
+
+STEP 7: After all the necessary packages are installed, run the file (plotting.py)
+
+STEP 8: After running do not show your face in front of the camera, until the system prompts you through voice
+
+STEP 9: Once prompted you can show your face in front of the camera and the system will provide you with voice prompts regarding next steps
 
 STEP 10: Steps prompted during running the program
 1.	Prompt to show your face in front of the camera.
